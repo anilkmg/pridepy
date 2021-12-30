@@ -1,10 +1,10 @@
 from unittest import TestCase
 
-from files.files import Files
-from peptide.peptide import Peptide
-from project.project import Project
-from protein.protein import Protein
-from spectra.spectra import Spectra
+from pridepy.files import Files
+from pridepy.peptide import Peptide
+from pridepy.project import Project
+from pridepy.protein import Protein
+from pridepy.spectra import Spectra
 
 
 class TestSearch(TestCase):

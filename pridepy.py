@@ -4,14 +4,14 @@ import logging
 
 import click
 
-from authentication.authentication import Authentication
-from files.files import Files
-from msrun.msrun import MsRun
-from peptide.peptide import Peptide
-from project.project import Project
-from protein.protein import Protein
-from spectra.spectra import Spectra
-from util.file_handling import FileHanding
+from pridepy.authentication.authentication import Authentication
+from pridepy.files.files import Files
+from pridepy.msrun.msrun import MsRun
+from pridepy.peptide.peptide import Peptide
+from pridepy.project.project import Project
+from pridepy.protein.protein import Protein
+from pridepy.spectra.spectra import Spectra
+from pridepy.util.file_handling import FileHanding
 
 
 @click.group()

@@ -2,7 +2,7 @@ import unittest
 
 import pytest
 
-import authentication.authentication
+from pridepy.authentication import Authentication
 
 
 class TestAuthentication(unittest.TestCase):
@@ -16,9 +16,9 @@ class TestAuthentication(unittest.TestCase):
         Test get API AAP token functionality
         :return:
         """
-        username = "******"
-        password = "******"
-        auth = authentication.authentication.Authentication()
+        username = "anil@ibioinformatics.org"
+        password = "tvYkX34H"
+        auth = Authentication()
         api_token = auth.get_token(username, password)
         print(api_token)
         self.assertTrue(len(api_token) > 20, "Token not found!")
@@ -29,9 +29,9 @@ class TestAuthentication(unittest.TestCase):
         Test get API AAP token is valid or expired
         :return:
         """
-        username = "******"
-        password = "******"
-        auth = authentication.authentication.Authentication()
+        username = "anil@ibioinformatics.org"
+        password = "tvYkX34H"
+        auth = Authentication()
         api_token = auth.get_token(username, password)
         print(api_token)
         self.assertTrue(auth.validate_token(api_token), "Token is invalid or expired!")

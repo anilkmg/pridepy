@@ -12,10 +12,10 @@ setup(
     description="Python Client library for PRIDE Rest API",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/PRIDE-Archive/pridepy",
+    url="https://github.com/anilkmg/pridepy",
     keywords="PRIDE python client REST API",
     packages=setuptools.find_packages(),
-    py_modules=['pridepy'],
+    py_modules=['pridepy', ],
     install_requires=[
         'requests',
         'ratelimit',
@@ -28,4 +28,5 @@ setup(
         [console_scripts]
         pridepy=pridepy:main
     ''',
+    test_suite="tests",
 )

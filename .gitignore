@@ -1,5 +1,5 @@
 .pytest_cache
 dist
 build
-tests/test_authentication.py
+*_secret.py
 *.egg-info

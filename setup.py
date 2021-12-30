@@ -26,7 +26,7 @@ setup(
     ],
     entry_points='''
         [console_scripts]
-        pridepy=pridepy:main
+        pridepy=pridepy.commandline:main
     ''',
     test_suite="tests",
 )

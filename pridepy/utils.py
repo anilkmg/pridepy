@@ -132,6 +132,6 @@ def project_files_download(accession, category=None, exclude_filetypes=None, exc
     prj_folder = os.path.join(os.path.curdir, 'data', accession, '')
     # Skip if the project download folder already present
     if not os.path.exists(prj_folder):
-        os.mkdir(prj_folder)
         file_list_json = project_files(accession, category=category, exclude_filetypes=exclude_filetypes, exclude_raw=exclude_raw, only_result=only_result)
+        os.mkdir(prj_folder)
         Files.download_files_from_ftp(file_list_json, prj_folder)

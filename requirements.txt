@@ -5,3 +5,6 @@ click
 pytest
 setuptools
 plotly
+pridepy
+pandas
+numpy

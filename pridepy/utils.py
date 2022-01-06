@@ -119,17 +119,19 @@ def project_files(accession, category=None, exclude_filetypes=None, exclude_raw=
     return response_json
 
 
-def project_files_download(accession, category=None, exclude_raw=False, only_result=False):
+def project_files_download(accession, category=None, exclude_filetypes=None, exclude_raw=False, only_result=False):
     """
     Get all files list from PRIDE API for a given project_accession
     :param accession: PRIDE accession
     :param category: Sub-category of files to list (eg. SEARCH, RESULT)
+    :param exclude_filetypes: Exclude files of certain type (eg. .msf or .pdresult)
     :param exclude_raw: Filter raw files from list
     :param only_result: Return only SEARCH and RESULT files
     :return: file list in JSON format
     """
-    file_list_json = project_files(accession, category=category, exclude_raw=exclude_raw, only_result=only_result)
     prj_folder = os.path.join(os.path.curdir, 'data', accession, '')
+    # Skip if the project download folder already present
     if not os.path.exists(prj_folder):
         os.mkdir(prj_folder)
+        file_list_json = project_files(accession, category=category, exclude_filetypes=exclude_filetypes, exclude_raw=exclude_raw, only_result=only_result)
         Files.download_files_from_ftp(file_list_json, prj_folder)

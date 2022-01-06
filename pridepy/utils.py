@@ -1,9 +1,7 @@
 import sys
 import os.path
 import json
-import pickle
 import pandas as pd
-from pridepy.authentication import Authentication
 from pridepy import Project
 from pridepy.util.api_handling import Util
 from pridepy.files import Files
@@ -89,11 +87,12 @@ def projects_info(project_fname, keyword=None):
     return proj_info[(proj_info.apply(lambda x: x.to_json().lower().find(keyword) > -1, axis=1) == True)]
 
 
-def project_files(accession, category=None, exclude_raw=False, only_result=False):
+def project_files(accession, category=None, exclude_filetypes=None, exclude_raw=False, only_result=False):
     """
     Get all files list from PRIDE API for a given project_accession
     :param accession: PRIDE accession
     :param category: Sub-category of files to list (eg. SEARCH, RESULT)
+    :param exclude_filetypes: Exclude files of certain type (eg. .msf or .pdresult)
     :param exclude_raw: Filter raw files from list
     :param only_result: Return only SEARCH and RESULT files
     :return: file list in JSON format
@@ -110,6 +109,11 @@ def project_files(accession, category=None, exclude_raw=False, only_result=False
             if fl['fileCategory']['value'] == 'RAW': continue
             if only_result:
                 if not fl['fileCategory']['value'] in ('SEARCH', 'RESULT'): continue
+            if exclude_filetypes:
+                fname = fl['fileName'].lower()
+                exclude_filetypes = [exclude_filetypes, ] if isinstance(exclude_filetypes, str) else exclude_filetypes
+                for exclude_filetype in exclude_filetypes:
+                    if fname.endswith(exclude_filetype) or fname.endswith(exclude_filetype + '.zip') or fname.endswith(exclude_filetype + '.gz'): continue
             rs_no_raw_files.append(fl)
         return rs_no_raw_files
     return response_json

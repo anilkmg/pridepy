@@ -15,7 +15,6 @@ setup(
     url="https://github.com/anilkmg/pridepy",
     keywords="PRIDE python client REST API",
     packages=setuptools.find_packages(),
-    py_modules=['pridepy', ],
     install_requires=[
         'requests',
         'ratelimit',

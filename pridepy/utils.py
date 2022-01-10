@@ -113,7 +113,7 @@ def project_files(accession, category=None, exclude_filetypes=None, exclude_raw=
                 fname = fl['fileName'].lower()
                 exclude_filetypes = [exclude_filetypes, ] if isinstance(exclude_filetypes, str) else exclude_filetypes
                 for exclude_filetype in exclude_filetypes:
-                    if fname.endswith(exclude_filetype) or fname.endswith(exclude_filetype + '.zip') or fname.endswith(exclude_filetype + '.gz'): continue
+                    if fname.endswith(exclude_filetype) or fname.endswith(exclude_filetype + '.zip') or fname.endswith(exclude_filetype + '.gz'): break
             rs_no_raw_files.append(fl)
         return rs_no_raw_files
     return response_json

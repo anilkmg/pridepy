@@ -106,6 +106,7 @@ def project_files(accession, category=None, exclude_filetypes=None, exclude_raw=
     if exclude_raw:
         rs_no_raw_files = []
         for fl in response_json:
+            exclude = False
             if fl['fileCategory']['value'] == 'RAW': continue
             if only_result:
                 if not fl['fileCategory']['value'] in ('SEARCH', 'RESULT'): continue
@@ -113,8 +114,11 @@ def project_files(accession, category=None, exclude_filetypes=None, exclude_raw=
                 fname = fl['fileName'].lower()
                 exclude_filetypes = [exclude_filetypes, ] if isinstance(exclude_filetypes, str) else exclude_filetypes
                 for exclude_filetype in exclude_filetypes:
-                    if fname.endswith(exclude_filetype) or fname.endswith(exclude_filetype + '.zip') or fname.endswith(exclude_filetype + '.gz'): continue
-            rs_no_raw_files.append(fl)
+                    if fname.endswith(exclude_filetype) or fname.endswith(exclude_filetype + '.zip') or fname.endswith(exclude_filetype + '.gz'):
+                        exclude = True
+                        break
+            if not exclude:
+                rs_no_raw_files.append(fl)
         return rs_no_raw_files
     return response_json
 
